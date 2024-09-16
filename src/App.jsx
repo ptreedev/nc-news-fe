@@ -1,14 +1,24 @@
 import { useState } from 'react'
-
+import { Routes, Route } from "react-router-dom"
 import './App.css'
+import Header from './components/Header'
+import Home from './components/Home'
+import Articles from './components/Articles'
 
 function App() {
 
 
   return (
-    <>
-      <h1>nc-news-fe</h1>
-    </>
+  <>
+      <section>
+        <Header />
+        <Routes>
+          <Route path='/' element={<Home />} />
+          <Route path='/articles' element={<Articles />} />
+        </Routes>
+      </section>
+  </>
+    
   )
 }
 

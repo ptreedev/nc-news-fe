@@ -1,0 +1,30 @@
+
+
+.article-card {
+  border-style: solid;
+  border-color: gray;
+  border-radius: 25px;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  width: 500px;
+  height: auto;
+  display: flex;
+}
+.article-body{
+  padding: 2px 16px;
+  align-self: center;
+}
+
+.article-card > img {
+  width: 250px;
+  height: auto;
+  border-radius: 25px;
+  align-self: auto;
+}
+
+
+.article-card-button {
+  padding: 10px;
+  margin: 0px;
+}
+

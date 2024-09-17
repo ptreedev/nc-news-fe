@@ -4,14 +4,20 @@ const newsClient = axios.create({
     baseURL: "https://nc-news-api-ne3e.onrender.com/api"
 }) 
 
-const getArticles = () => {
+export const getArticles = () => {
     return newsClient.get("/articles")
-    .then((response) => {
-        return response
-    })
-    .catch((err) => {
-        console.log(err)
+    .then(({data: {articles}}) => {
+        return articles
     })
 }
+    
 
-export default getArticles
+export const getArticle = (article_id) => {
+    const url = `/articles/${article_id}`
+    return newsClient.get(url)
+    .then(({data: {article}}) => {
+        return article
+    })
+    
+}
+

@@ -1,16 +1,32 @@
 import { useEffect, useState } from "react"
-import getArticles from "../api";
+import { getArticles } from "../api";
 import ArticleCard from "./ArticleCard";
 
 //select will need state when adding filter functionality
 
 const Articles = () => {
     const [articles, setArticles] = useState([]);
+    const [isLoading, setIsLoading] = useState(true)
     useEffect(() => {
-        getArticles().then(({data: {articles}}) => {
+        getArticles().then((articles) => {
             setArticles(articles)
+            setIsLoading(false)
+        })
+        .catch((error) => {
+            // add err handling
+        })
+        .finally(() => {
+            setIsLoading(false)
         })
     }, []);
+    if(isLoading) {
+        return (
+            <div>
+                <p>Loading Articles...</p>
+                
+            </div>
+        )
+    }
     return (
         <section className="article-list">
             <h2>

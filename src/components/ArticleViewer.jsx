@@ -16,18 +16,24 @@ const ArticleViewer = () => {
         .finally(() => {
             setIsLoading(false)
         })
-    }, [currArticle])
-    const date = new Date(currArticle.created_at)
-    console.log
+    }, [currArticle]);
+    const date = new Date(currArticle.created_at);
+    
+    if(isLoading){
+        return <p>Loading Article...</p>
+    };
     return (
-        <>
+        <section class="single-article">
         <h2>
             {currArticle.title}
         </h2>
-        <p>written by {currArticle.author} || {date.getUTCDate()}/{date.getUTCMonth() + 1}/{date.getUTCFullYear()}</p>
-        <p>{currArticle.body}</p>
+        <p>written by {currArticle.author} || {date.getUTCDate()}/{date.getUTCMonth() + 1}/{date.getUTCFullYear()} || {currArticle.topic}</p>
+        <img src={currArticle.article_img_url} />
+        <article>{currArticle.body}</article>
+        <p>comments: {currArticle.comment_count} || votes: {currArticle.votes}</p>
+        <button>View Comments</button>
         
-        </>
+        </section>
     )
 }
 

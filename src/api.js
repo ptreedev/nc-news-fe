@@ -28,3 +28,11 @@ export const getComments = (article_id) => {
         return comments
     }) 
 }
+
+export const patchVotes = (article_id, vote) => {
+    const url = `/articles/${article_id}`
+    return newsClient.patch(url, vote)
+    .then(({data}) => {
+        return data
+    })
+}

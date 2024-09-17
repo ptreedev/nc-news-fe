@@ -5,26 +5,34 @@ import CommentCard from "./CommentCard";
 
 const CommentsList = () => {
     const [comments, setComments] = useState([]);
-    const {article_id} = useParams();
+    const [hasComments, setHasComments] = useState(false)
+    const { article_id } = useParams();
     useEffect(() => {
         getComments(article_id)
-        .then((comments) => {
-            setComments(comments)
-        })
-        .catch((error) => {
-            //error handling
-        })
-        .finally(() => {
+            .then((comments) => {
+                setComments(comments)
+                setHasComments(true)
+            })
+            .catch((error) => {
+                console.log(error)
+            })
+            .finally(() => {
 
-        })
+            })
     }, [])
     return (
-        <ul>
-            {comments.map((comment) => {
-                return <CommentCard comment={comment} key={comment.comment_id}/>
-            })}
-        </ul>
+        <div>
+
+            {hasComments ?
+                <ul>
+                    {comments.map((comment) => {
+                        return <CommentCard comment={comment} key={comment.comment_id} />
+                    })}
+                </ul>
+                : <p>no comments for this post</p>}
+        </div>
     )
 }
+
 
 export default CommentsList

@@ -4,11 +4,13 @@ import { useEffect, useState } from "react";
 import Expandable from "./Expandable";
 import CommentsList from "./CommentsList";
 import formatDate from "../utilities/formatDate";
+import AddComment from "./AddComment";
 const ArticleViewer = () => {
     const [currArticle, setCurrArticle] = useState({});
     const [isLoading, setIsLoading] = useState(true);
     const [voteCount, setVoteCount] = useState(0);
     const [error, setError] = useState(null);
+    const [formVisible, setFormVisible] = useState(false)
     const { article_id } = useParams();
     useEffect(() => {
         getArticle(article_id)
@@ -47,6 +49,10 @@ const ArticleViewer = () => {
 
     }
 
+    const showForm = () => {
+        setFormVisible(true)
+    }
+
     if (isLoading) {
         return <p>Loading Article...</p>
     };
@@ -61,10 +67,12 @@ const ArticleViewer = () => {
             <img src={currArticle.article_img_url} />
             <article>{currArticle.body}</article>
             <p>comments: {currArticle.comment_count} || votes: {voteCount} </p><button onClick={handleVote} value="down">downvote</button> <button onClick={handleVote} value="up">upvote</button>
+            {error ? <p>{error}</p> : null}
             <Expandable>
                 <CommentsList />
             </Expandable>
-
+            <button onClick={showForm}>Add a comment</button>
+            {formVisible ? <AddComment /> : null}
         </section>
     )
 }

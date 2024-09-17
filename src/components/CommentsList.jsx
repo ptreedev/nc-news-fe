@@ -6,6 +6,7 @@ import CommentCard from "./CommentCard";
 const CommentsList = () => {
     const [comments, setComments] = useState([]);
     const [hasComments, setHasComments] = useState(false)
+    const [isLoading, setIsLoading] = useState(true);
     const { article_id } = useParams();
     useEffect(() => {
         getComments(article_id)
@@ -17,9 +18,10 @@ const CommentsList = () => {
                 console.log(error)
             })
             .finally(() => {
-
+                setIsLoading(false)
             })
     }, [])
+    if(isLoading){return <p>Loading Comments...</p>}
     return (
         <div>
 

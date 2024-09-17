@@ -36,3 +36,11 @@ export const patchVotes = (article_id, vote) => {
         return data
     })
 }
+
+export const postComment = (article_id, comment) => {
+    const url = `/articles/${article_id}/comments`
+    return newsClient.post(url, comment)
+    .then((data)=> {
+        console.log(data)
+    })
+}

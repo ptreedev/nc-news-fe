@@ -21,3 +21,10 @@ export const getArticle = (article_id) => {
     
 }
 
+export const getComments = (article_id) => {
+    const url = `/articles/${article_id}/comments`
+    return newsClient.get(url)
+    .then(({data: {comments}}) => {
+        return comments
+    }) 
+}

@@ -29,6 +29,9 @@
 }
 .single-article {
   max-width: 500px;
+  margin: 30px;
+  margin-left: 50px;
+
 }
 
 .single-article > img {
@@ -39,3 +42,19 @@
   margin-top: 0px;
   
 }
+
+.comment-card {
+  border-style: solid;
+  padding: 5px;
+  padding-inline: 10px;
+  margin: 30px;
+  border-radius: 25px;
+}
+
+.comment-header, .comment-footer {
+  font-size: 90%;
+  color: aquamarine;
+}
+
+
+

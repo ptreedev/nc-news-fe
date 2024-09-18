@@ -3,9 +3,9 @@ import { useParams } from "react-router-dom";
 import { getComments } from "../api";
 import CommentCard from "./CommentCard";
 
-const CommentsList = () => {
-    const [comments, setComments] = useState([]);
+const CommentsList = ({comments, setComments}) => {
     const [hasComments, setHasComments] = useState(false)
+    const [isLoading, setIsLoading] = useState(true);
     const { article_id } = useParams();
     useEffect(() => {
         getComments(article_id)
@@ -17,16 +17,17 @@ const CommentsList = () => {
                 console.log(error)
             })
             .finally(() => {
-
+                setIsLoading(false)
             })
     }, [])
+    if(isLoading){return <p>Loading Comments...</p>}
     return (
         <div>
 
             {hasComments ?
                 <ul>
                     {comments.map((comment) => {
-                        return <CommentCard comment={comment} key={comment.comment_id} />
+                        return <CommentCard comment={comment} key={comment.comment_id} setComments={setComments}/>
                     })}
                 </ul>
                 : <p>no comments for this post</p>}

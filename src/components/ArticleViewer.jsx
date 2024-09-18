@@ -10,13 +10,15 @@ const ArticleViewer = () => {
     const [isLoading, setIsLoading] = useState(true);
     const [voteCount, setVoteCount] = useState(0);
     const [error, setError] = useState(null);
-    const [formVisible, setFormVisible] = useState(false)
+    const [comments, setComments] = useState([]);
+    const [commentCount, setCommentCount] = useState(0)
     const { article_id } = useParams();
     useEffect(() => {
         getArticle(article_id)
             .then((article) => {
                 setCurrArticle(article)
                 setVoteCount(article.votes)
+                setCommentCount(article.comment_count)
             })
             .catch((err) => {
                 //err handling
@@ -28,29 +30,15 @@ const ArticleViewer = () => {
 
     const handleVote = (event) => {
         const errorMsg = "Your vote was unsuccessful, please try again."
-        if (event.target.value === "up") {
-            setVoteCount((currVoteCount) => currVoteCount + 1);
+            console.log(typeof event.target.value)
+            const vote = Number(event.target.value)
+            setVoteCount((currVoteCount) => currVoteCount + vote);
             setError(null)
-            patchVotes(article_id, { inc_votes: 1 })
+            patchVotes(article_id, { inc_votes: vote })
                 .catch((err) => {
-                    setVoteCount((currVoteCount) => currVoteCount - 1);
+                    setVoteCount((currVoteCount) => currVoteCount - vote);
                     setError(errorMsg)
                 })
-        } else if (event.target.value === "down"){
-
-            setVoteCount((currVoteCount) => currVoteCount - 1);
-        setError(null)
-        patchVotes(article_id, { inc_votes: -1 })
-            .catch((err) => {
-                setVoteCount((currVoteCount) => currVoteCount + 1);
-                setError(errorMsg)
-            })
-        }
-
-    }
-
-    const showForm = () => {
-        setFormVisible(true)
     }
 
     if (isLoading) {
@@ -66,13 +54,12 @@ const ArticleViewer = () => {
             <p>written by {currArticle.author} || {formatDate(currArticle.created_at)} || {currArticle.topic}</p>
             <img src={currArticle.article_img_url} />
             <article>{currArticle.body}</article>
-            <p>comments: {currArticle.comment_count} || votes: {voteCount} </p><button onClick={handleVote} value="down">downvote</button> <button onClick={handleVote} value="up">upvote</button>
+            <p>comments: {commentCount} || votes: {voteCount} </p><button onClick={handleVote} value="-1">downvote</button> <button onClick={handleVote} value="1">upvote</button>
             {error ? <p>{error}</p> : null}
             <Expandable>
-                <CommentsList />
+            <AddComment setComments={setComments} setCommentCount={setCommentCount}/> 
+                <CommentsList comments={comments} setComments={setComments} />
             </Expandable>
-            <button onClick={showForm}>Add a comment</button>
-            {formVisible ? <AddComment /> : null}
         </section>
     )
 }

@@ -30,7 +30,6 @@ const ArticleViewer = () => {
 
     const handleVote = (event) => {
         const errorMsg = "Your vote was unsuccessful, please try again."
-            console.log(typeof event.target.value)
             const vote = Number(event.target.value)
             setVoteCount((currVoteCount) => currVoteCount + vote);
             setError(null)

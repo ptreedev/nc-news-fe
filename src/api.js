@@ -44,3 +44,8 @@ export const postComment = (article_id, comment) => {
         return data.comment
     })
 }
+
+export const deleteComment = (comment_id) => {
+    const url = `/comments/${comment_id}`;
+    return newsClient.delete(url)
+}

@@ -19,7 +19,7 @@ const CommentsList = ({comments, setComments}) => {
             .finally(() => {
                 setIsLoading(false)
             })
-    }, [])
+    }, [setComments])
     if(isLoading){return <p>Loading Comments...</p>}
     return (
         <div>

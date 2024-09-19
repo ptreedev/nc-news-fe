@@ -53,10 +53,12 @@ const ArticleViewer = () => {
             <p>written by {currArticle.author} || {formatDate(currArticle.created_at)} || {currArticle.topic}</p>
             <img src={currArticle.article_img_url} />
             <article>{currArticle.body}</article>
-            <p>comments: {commentCount} || votes: {voteCount} </p><button onClick={handleVote} value="-1">downvote</button> <button onClick={handleVote} value="1">upvote</button>
+            <p>comments: {commentCount} || votes: {voteCount} </p>
+            <button onClick={handleVote} value="-1">downvote</button> 
+            <button onClick={handleVote} value="1">upvote</button>
             {error ? <p>{error}</p> : null}
             <Expandable>
-            <AddComment setComments={setComments} setCommentCount={setCommentCount}/> 
+                <AddComment setComments={setComments} setCommentCount={setCommentCount}/> 
                 <CommentsList comments={comments} setComments={setComments} />
             </Expandable>
         </section>

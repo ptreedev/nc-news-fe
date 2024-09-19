@@ -6,6 +6,7 @@ const AddComment = ({setComments, setCommentCount}) => {
     const [commentBody, setCommentBody] = useState("");
     const [disabled, setDisabled] = useState(true)
     const [posting, setPosting] = useState(false)
+    const [error, setError] = useState(null);
     const { article_id } = useParams();
     const handleChange = (event) => {
         setCommentBody(event.target.value)
@@ -13,8 +14,10 @@ const AddComment = ({setComments, setCommentCount}) => {
     }
     const handleSubmit = (event) => {
         event.preventDefault();
+        const errorMsg = "Your comment was unsuccessful, please try again."
         setDisabled(true);
         setPosting(true);
+        setError(null)
         const postObj = {
             username: "jessjelly",
             body: commentBody
@@ -26,6 +29,10 @@ const AddComment = ({setComments, setCommentCount}) => {
             setPosting(false);
             setCommentBody("")
         })
+        .catch((err) => {
+            setPosting(false);
+            setError(errorMsg)
+        })
     }
 
     return (
@@ -36,6 +43,7 @@ const AddComment = ({setComments, setCommentCount}) => {
                 <input type="submit" value="submit" disabled={disabled} />
             </form>
             {posting ? <p>posting comment...</p> : null}
+            {error ? <p>{error}</p> : null}
         </section>
     )
 }

@@ -35,7 +35,6 @@ const Topics = () => {
                     return (
                     <section key={i} className="topic-card">
                         <h3 >{topic.slug[0].toUpperCase() + topic.slug.slice(1)}</h3>
-                        <div></div>
                         <p> {topic.description} </p>
                         <Link to={`/${topic.slug}`} > View Articles </Link>
                     </section>)

@@ -9,15 +9,14 @@ import Topics from './components/Topics'
 
 
 function App() {
-
-  const [url, setUrl] = useState() 
+  
   return (
   <>
       <section>
-        <Header setUrl={setUrl}/>
+        <Header />
         <Routes>
           <Route path='/' element={<Home />} />
-          <Route path='/articles' element={<Articles url={url} />} />
+          <Route path='/articles' element={<Articles />} />
           <Route path='/articles/:article_id' element={<ArticleViewer />} />
           <Route path='/topics' element={<Topics/>} />
           <Route path='/:topics' element={<Articles/>} />

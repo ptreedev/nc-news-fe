@@ -1,4 +1,5 @@
 import Articles from "./Articles"
+import Topics from "./Topics"
 import { Link } from "react-router-dom"
 
 const Home = () => {
@@ -7,7 +8,7 @@ const Home = () => {
         <section>
             <h2>Home</h2>
             <Link to='/articles' element={<Articles />}> <button>Articles</button> </Link><br/>
-            <button>Topics</button><br/>
+            <Link to='/topics' element={<Topics />}> <button>Topics</button><br/> </Link>
             <button>Feeling Random?</button><br/>
         </section>
     </>

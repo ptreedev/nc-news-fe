@@ -1,16 +1,21 @@
 import { useEffect, useState } from "react"
 import { getArticles } from "../api";
 import ArticleCard from "./ArticleCard";
+import { useParams } from "react-router-dom";
 
 //select will need state when adding filter functionality
 
-const Articles = () => {
+const Articles = ({url}) => {
     const [articles, setArticles] = useState([]);
     const [isLoading, setIsLoading] = useState(true)
+    const {topics} = useParams();
+    
     useEffect(() => {
-        getArticles().then((articles) => {
+        getArticles(topics).then((articles) => {
             setArticles(articles)
             setIsLoading(false)
+            
+            
         })
         .catch((error) => {
             // add err handling
@@ -18,7 +23,7 @@ const Articles = () => {
         .finally(() => {
             setIsLoading(false)
         })
-    }, []);
+    }, [url]);
     if(isLoading) {
         return (
             <div>
@@ -32,9 +37,9 @@ const Articles = () => {
             <h2>
                 Articles
             </h2>
-            <select name="topic_name" id="topic_name" defaultValue="select_topic">
+            <select name="topic_name" id="topic_name" defaultValue="show-all">
                 <option value="select_topic" disabled>Filter by topic...</option>
-                <option value="">Show All</option>
+                <option value="show-all">Show All</option>
                 <option value="cooking">Cooking</option>
                 <option value="coding">Coding</option>
                 <option value="football">Football</option>

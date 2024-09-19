@@ -4,8 +4,12 @@ const newsClient = axios.create({
     baseURL: "https://nc-news-api-ne3e.onrender.com/api"
 }) 
 
-export const getArticles = () => {
-    return newsClient.get("/articles")
+export const getArticles = (topics) => {
+    return newsClient.get("/articles", {
+        params: {
+            topic: topics
+        }
+    })
     .then(({data: {articles}}) => {
         return articles
     })
@@ -48,4 +52,11 @@ export const postComment = (article_id, comment) => {
 export const deleteComment = (comment_id) => {
     const url = `/comments/${comment_id}`;
     return newsClient.delete(url)
+}
+
+export const getTopics = () => {
+    return newsClient.get('/topics')
+    .then(({data: {data}}) => {
+        return data
+    })
 }

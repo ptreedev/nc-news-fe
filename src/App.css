@@ -53,8 +53,16 @@
 
 .comment-header, .comment-footer {
   font-size: 90%;
-  color: aquamarine;
+  color: #f9c775;;
 }
 
+.topic-card {
+  border-style: solid;
+  padding: 5px;
+  padding-bottom: 20px;
+  padding-inline: 10px;
+  margin: 30px;
+  border-radius: 25px;
 
+}
 

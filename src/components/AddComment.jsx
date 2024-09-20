@@ -2,7 +2,7 @@ import { useState } from "react"
 import { postComment } from "../api";
 import { useParams } from "react-router-dom";
 
-const AddComment = ({setComments, setCommentCount}) => {
+const AddComment = ({setComments, setCommentCount, setHasComments}) => {
     const [commentBody, setCommentBody] = useState("");
     const [disabled, setDisabled] = useState(true)
     const [posting, setPosting] = useState(false)
@@ -28,6 +28,7 @@ const AddComment = ({setComments, setCommentCount}) => {
             setDisabled(false);
             setPosting(false);
             setCommentBody("")
+            setHasComments(true)
         })
         .catch((err) => {
             setPosting(false);

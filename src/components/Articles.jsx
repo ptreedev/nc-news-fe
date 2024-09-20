@@ -12,9 +12,9 @@ const Articles = () => {
     const [selectedFilter, setSelectedFilter] = useState('');
     const [selectedSort, setSelectedSort] = useState('sort')
     const [searchParams, setSearchParams] = useSearchParams();
+    const [error, setError] = useState(null);
     const sortByQuery = searchParams.get("sort_by");
     const orderQuery = searchParams.get("order");
-    console.log(orderQuery)
     const navigate = useNavigate();
     const { topics } = useParams();
     const setSortOrder = (direction) => {
@@ -29,7 +29,6 @@ const Articles = () => {
 
     }
     const handleFilterChange = (event) => {
-        console.log(event.target.value)
         setSelectedFilter(event.target.value);
         navigate(`/${event.target.value}`)
     };
@@ -38,10 +37,11 @@ const Articles = () => {
             setArticles(articles)
             setIsLoading(false)
             setSelectedFilter(topics)
+            setError(null)
 
         })
-            .catch((error) => {
-                // add err handling
+            .catch((err) => {
+                setError("articles not found")
             })
             .finally(() => {
                 setIsLoading(false)
@@ -60,6 +60,7 @@ const Articles = () => {
             <h2>
                 Articles
             </h2>
+            {error ? <p>{error}</p> : <article className="article-list">
             <select name="topic_name" id="topic_name" value={selectedFilter} onChange={handleFilterChange}>
                 <option value="select_topic" disabled>Filter by topic...</option>
                 <option value="articles">Show All</option>
@@ -84,6 +85,7 @@ const Articles = () => {
                     return <ArticleCard key={article.article_id} article={article} />
                 })}
             </ul>
+            </article>}
         </ section>
     )
 }

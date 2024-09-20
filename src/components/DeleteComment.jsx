@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { deleteComment } from "../api"
 
-const DeleteComment = ({ comment_id, setComments }) => {
+const DeleteComment = ({ comment_id, setComments, setHasComments, setCommentCount }) => {
     const [disabled, setDisabled] = useState(false)
     const [error, setError] = useState(null);
     const handleDelete = () => {
@@ -13,8 +13,13 @@ const DeleteComment = ({ comment_id, setComments }) => {
                 setDisabled(false);
                 setComments((currComments) => {
                     const filtered = currComments.filter((comment) => comment.comment_id !== comment_id)
+                    if(filtered.length === 0){
+                        setCommentCount(0);
+                        setHasComments(false);
+                    }
                     return filtered
                 })
+              
 
             })
             .catch((err) => {

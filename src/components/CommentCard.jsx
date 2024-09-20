@@ -1,7 +1,7 @@
 import { useState } from "react"
 import formatDate from "../utilities/formatDate"
 import DeleteComment from "./DeleteComment"
-const CommentCard = ({ comment, setComments }) => {
+const CommentCard = ({ comment, setComments, setHasComments, setCommentCount }) => {
     const user = "jessjelly"
 
     return (
@@ -14,7 +14,7 @@ const CommentCard = ({ comment, setComments }) => {
             </div>
             <div className="comment-footer">
                 <p> votes: {comment.votes} </p> 
-                {comment.author === user ? <DeleteComment comment_id={comment.comment_id} setComments={setComments}/> : null}
+                {comment.author === user ? <DeleteComment comment_id={comment.comment_id} setComments={setComments} setHasComments={setHasComments} setCommentCount={setCommentCount}/> : null}
             </div>
         </article>
     )

@@ -3,8 +3,8 @@ import { useParams } from "react-router-dom";
 import { getComments } from "../api";
 import CommentCard from "./CommentCard";
 
-const CommentsList = ({comments, setComments}) => {
-    const [hasComments, setHasComments] = useState(false)
+const CommentsList = ({comments, setComments, hasComments, setHasComments, setCommentCount}) => {
+    const [error, setError] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
     const { article_id } = useParams();
     useEffect(() => {
@@ -12,9 +12,10 @@ const CommentsList = ({comments, setComments}) => {
             .then((comments) => {
                 setComments(comments)
                 setHasComments(true)
+                setError(null)
             })
             .catch((error) => {
-                console.log(error)
+                setError("Could not load comments at this time")
             })
             .finally(() => {
                 setIsLoading(false)
@@ -22,16 +23,20 @@ const CommentsList = ({comments, setComments}) => {
     }, [setComments])
     if(isLoading){return <p>Loading Comments...</p>}
     return (
-        <div>
-
-            {hasComments ?
-                <ul>
-                    {comments.map((comment) => {
-                        return <CommentCard comment={comment} key={comment.comment_id} setComments={setComments}/>
-                    })}
-                </ul>
-                : <p>no comments for this post</p>}
-        </div>
+        <section>
+            {
+                error ? <p>{error}</p> : <article>
+                    {hasComments ?
+                    <ul>
+                        {comments.map((comment) => {
+                            return <CommentCard comment={comment} key={comment.comment_id} setComments={setComments} setHasComments={setHasComments} setCommentCount={setCommentCount}/>
+                        })}
+                    </ul>
+                    : <p>no comments for this post</p>}
+                </article> 
+            
+            }
+        </section>
     )
 }
 

@@ -12,7 +12,7 @@ function App() {
   
   return (
   <>
-      <section>
+      <section className='content'>
         <Header />
         <Routes>
           <Route path='/' element={<Home />} />

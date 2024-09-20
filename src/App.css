@@ -9,6 +9,7 @@
   width: 500px;
   height: auto;
   display: flex;
+  
 }
 .article-body{
   padding: 2px 16px;
@@ -65,12 +66,18 @@
   border-radius: 25px;
 
 }
-
-.article-list > button {
-  padding:0.5%;
+ h2 {
+  align-self: center;
+}
+.article-list > button, select {
+  padding: 1%;
   margin-inline: 2px;
   background-color: rgba(128, 128, 128, 0.232);
-  font-size: 85%;
+  font-size: 100%;
   font-weight: 350;
   border-color: rgba(255, 255, 255, 0.33);
+}
+
+.article-list {
+  text-align: center;
 }

@@ -1,6 +1,6 @@
 # Northcoders News App
 
-Welcome to my NC-News-App. This is a project I've been working on to learn how to use React to create a web app for my NC_News_API. It allows the user to navigate to different pages to view various articles of "news". You can find the live version here: https://nc-news-newest.netlify.app as well as a link to my API on github: https://github.com/ptreedev/nc-news-api
+Welcome to my NC-News-App. This is a project I've been working on to learn how to use React to create a web app for my NC_News_API. It allows the user to navigate to different pages to view various articles of "news". You can find the live version here: https://nc-news-newest.netlify.app as well as a link to my API on github: https://github.com/ptreedev/nc-news-api and on render: https://nc-news-api-ne3e.onrender.com/api
 
 ## Running the project locally
 

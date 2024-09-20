@@ -80,7 +80,7 @@ const Articles = () => {
             <button onClick={() => setSortOrder("asc")}>Ascending</button>
             <button onClick={() => setSortOrder("desc")}>Descending</button>
 
-            <ul>
+            <ul >
                 {articles.map((article) => {
                     return <ArticleCard key={article.article_id} article={article} />
                 })}

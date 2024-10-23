@@ -50,7 +50,7 @@ const Articles = () => {
     if (isLoading) {
         return (
             <div>
-                <p>Loading Articles...</p>
+                <p>Loading Articles, this may take a while when first loading...</p>
 
             </div>
         )
@@ -61,30 +61,32 @@ const Articles = () => {
                 Articles
             </h2>
             {error ? <p>{error}</p> : <article className="article-list">
-            <select name="topic_name" id="topic_name" value={selectedFilter} onChange={handleFilterChange}>
-                <option value="select_topic" disabled>Filter by topic...</option>
-                <option value="articles">Show All</option>
-                <option value="cooking">Cooking</option>
-                <option value="coding">Coding</option>
-                <option value="football">Football</option>
-            </select>
-            <select name="sort_by" id="sort_by" value={selectedSort} onChange={handleSortChange}>
-                <option value="sort" disabled>Sort</option>
-                <option value="title">Title</option>
-                <option value="topic">Topic</option>
-                <option value="author">Author</option>
-                <option value="created_at">Date</option>
-                <option value="votes">Votes</option>
-                <option value="comment_count">Comment Count</option>
-            </select>
-            <button onClick={() => setSortOrder("asc")}>Ascending</button>
-            <button onClick={() => setSortOrder("desc")}>Descending</button>
+                <select name="topic_name" id="topic_name" value={selectedFilter} onChange={handleFilterChange}>
+                    <option value="select_topic" disabled>Filter by topic...</option>
+                    <option value="articles">Show All</option>
+                    <option value="cooking">Cooking</option>
+                    <option value="coding">Coding</option>
+                    <option value="football">Football</option>
+                </select>
+                <select name="sort_by" id="sort_by" value={selectedSort} onChange={handleSortChange}>
+                    <option value="sort" disabled>Sort</option>
+                    <option value="title">Title</option>
+                    <option value="topic">Topic</option>
+                    <option value="author">Author</option>
+                    <option value="created_at">Date</option>
+                    <option value="votes">Votes</option>
+                    <option value="comment_count">Comment Count</option>
+                </select>
+                <button onClick={() => setSortOrder("asc")}>Ascending</button>
+                <button onClick={() => setSortOrder("desc")}>Descending</button>
+                <ul >
+                    <div className="article-wrapper">
+                        {articles.map((article) => {
+                            return <ArticleCard key={article.article_id} article={article} />
+                        })}
+                    </div>
+                </ul>
 
-            <ul >
-                {articles.map((article) => {
-                    return <ArticleCard key={article.article_id} article={article} />
-                })}
-            </ul>
             </article>}
         </ section>
     )

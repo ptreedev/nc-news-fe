@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { getComments } from "../api";
 import CommentCard from "./CommentCard";
 
-const CommentsList = ({comments, setComments, hasComments, setHasComments, setCommentCount}) => {
+const CommentsList = ({ comments, setComments, hasComments, setHasComments, setCommentCount }) => {
     const [error, setError] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
     const { article_id } = useParams();
@@ -21,20 +21,23 @@ const CommentsList = ({comments, setComments, hasComments, setHasComments, setCo
                 setIsLoading(false)
             })
     }, [setComments])
-    if(isLoading){return <p>Loading Comments...</p>}
+    if (isLoading) { return <p>Loading Comments, this may take a while when first loading...</p> }
     return (
         <section>
             {
                 error ? <p>{error}</p> : <article>
                     {hasComments ?
-                    <ul>
-                        {comments.map((comment) => {
-                            return <CommentCard comment={comment} key={comment.comment_id} setComments={setComments} setHasComments={setHasComments} setCommentCount={setCommentCount}/>
-                        })}
-                    </ul>
-                    : <p>no comments for this post</p>}
-                </article> 
-            
+                        <ul>
+                            <div className="comment-wrapper">
+                                {comments.map((comment) => {
+                                    return <CommentCard comment={comment} key={comment.comment_id} setComments={setComments} setHasComments={setHasComments} setCommentCount={setCommentCount} />
+                                })}
+
+                            </div>
+                        </ul>
+                        : <p>no comments for this post</p>}
+                </article>
+
             }
         </section>
     )

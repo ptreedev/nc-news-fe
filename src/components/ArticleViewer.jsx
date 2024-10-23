@@ -44,7 +44,7 @@ const ArticleViewer = () => {
     }
 
     if (isLoading) {
-        return <p>Loading Article...</p>
+        return <p>Loading Article, this may take a while when first loading...</p>
     };
 
 
@@ -54,7 +54,7 @@ const ArticleViewer = () => {
                 <h2>
                     {currArticle.title}
                 </h2>
-                <p>written by {currArticle.author} || {formatDate(currArticle.created_at)} || {currArticle.topic}</p>
+                <p className="subtitle">written by {currArticle.author} || {formatDate(currArticle.created_at)} || {currArticle.topic}</p>
                 <img src={currArticle.article_img_url} />
                 <article>{currArticle.body}</article>
                 <p>comments: {commentCount} || votes: {voteCount} </p>

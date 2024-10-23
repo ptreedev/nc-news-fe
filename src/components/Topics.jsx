@@ -24,7 +24,7 @@ const Topics = () => {
     if (isLoading) {
         return (
             <div>
-                <p>Loading Topics...</p>
+                <p>Loading Topics, this may take a while when first loading...</p>
 
             </div>
         )

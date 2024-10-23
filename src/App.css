@@ -1,33 +1,54 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
 
+* {
+  margin: 0;
+}
+body {
+  width: 90%;
+  margin-inline: auto;
+}
+img {
+  max-width: 100%;
+  display: block;
+}
+.article-list {
+  text-align: center;
+}
+.article-wrapper {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
 
+}
 .article-card {
-  border-style: solid;
-  border-color: gray;
-  border-radius: 25px;
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  border: 1px solid gray;
+  border-radius: 6px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   transition: 0.3s;
-  width: 500px;
+  text-align: center;
+  justify-content: center;
+  display: grid;
+  grid-template-rows: subgrid;
+  grid-row: span 2;
+  padding: 2rem;
+}
+
+.article-body {
+  padding: 2px 2px;
+}
+
+.article-card>img {
+  width: auto;
   height: auto;
-  display: flex;
-  
-}
-.article-body{
-  padding: 2px 16px;
-  align-self: center;
-}
-
-.article-card > img {
-  width: 250px;
-  height: auto;
-  border-radius: 25px;
-  align-self: auto;
+  border-radius: 6px;
 }
 
 
-.article-card-button {
-  padding: 10px;
-  margin: 0px;
-}
 .single-article {
   max-width: 500px;
   margin: 30px;
@@ -35,26 +56,42 @@
 
 }
 
-.single-article > img {
+.single-article>img {
   max-width: 500px;
 }
-.single-article > button {
+
+.single-article>button {
   padding: 10px;
   margin-top: 0px;
-  
+
 }
 
+.comment-wrapper {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+
+}
 .comment-card {
   border-style: solid;
   padding: 5px;
   padding-inline: 10px;
-  margin: 30px;
-  border-radius: 25px;
+  margin: 10px;
+  border-radius: 6px;
+  /* text-align: center;
+  justify-content: center; */
+  display: grid;
+  grid-template-rows: subgrid;
+  grid-row: span 3;
+  padding: 1rem;
 }
 
-.comment-header, .comment-footer {
+.comment-header,
+.comment-footer {
   font-size: 90%;
-  color: #f9c775;;
+  color: #f9c775;
+  ;
 }
 
 .topic-card {
@@ -66,10 +103,13 @@
   border-radius: 25px;
 
 }
- h2 {
-  align-self: center;
+
+h2 {
+  font-size: 40px;
 }
-.article-list > button, select {
+
+.article-list>button,
+select {
   padding: 1%;
   margin-inline: 2px;
   background-color: rgba(128, 128, 128, 0.232);
@@ -78,6 +118,3 @@
   border-color: rgba(255, 255, 255, 0.33);
 }
 
-.article-list {
-  text-align: center;
-}
